@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id       Int    @id @default(autoincrement())  
+  createdAt DateTime @default(now())
+  name     String
+  email    String @unique
+  password String
+  type     userTypes
+  companies companies[]
+  teachers teachers[]
+  tutors tutors[]
+}
+
+model companies {
+  id       Int @id @default(autoincrement())
+  name     String
+  users    users @relation(fields: [userId], references: [id])
+  userId   Int  
+  teachers teachers[]
+  tutors tutors[]
+}
+
+model teachers {
+  id       Int @id @default(autoincrement())
+  name     String
+  users    users @relation(fields: [userId], references: [id])
+  userId   Int 
+  companies    companies @relation(fields: [companyId], references: [id])
+  companyId   Int 
+  disciplines    disciplines @relation(fields: [disciplineId], references: [id])
+  disciplineId   Int  
+  classes    classes @relation(fields: [classId], references: [id])
+  classId   Int
+}
+
+model tutors{
+  id       Int @id @default(autoincrement())
+  name     String
+  users    users @relation(fields: [userId], references: [id])
+  userId   Int 
+  companies    companies @relation(fields: [companyId], references: [id])
+  companyId   Int 
+  group_class    group_class @relation(fields: [group_classId], references: [id])
+  group_classId   Int 
+}
+
+model classes {
+  id       Int    @id @default(autoincrement())
+  name     String
+  group_class    group_class[]
+  teachers teachers[]
+}
+
+model groups{
+  id Int @id @default(autoincrement())
+  name String
+  group_class    group_class[]
+}
+
+model group_class{
+  id       Int    @id @default(autoincrement())
+  classes    classes @relation(fields: [classId], references: [id])
+  classId   Int
+  groups    groups @relation(fields: [groupId], references: [id])
+  groupId   Int
+  tutors  tutors[]
+}
+
+model disciplines {
+  id       Int    @id @default(autoincrement())
+  name     String
+  teachers teachers[]
+}
+
+
+enum userTypes {
+  company 
+  teacher
+  tutor
+  student
+}
+
