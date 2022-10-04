@@ -7,3 +7,8 @@ export async function createClass(
     await validationService.validateClassName(name)
     await classRepository.createClass(name)
 }
+
+export async function getClasses(){
+    const classesData = await classRepository.getClasses()
+    return classesData
+}

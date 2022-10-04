@@ -13,4 +13,10 @@ classRouter.post(
 	classController.createClass
 )
 
+classRouter.get(
+	"/classes",	
+    verifyToken,	
+	classController.getClasses
+)
+
 export default classRouter

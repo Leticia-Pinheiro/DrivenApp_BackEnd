@@ -8,3 +8,9 @@ export async function createClass(req: Request, res: Response){
 
     res.send("Class created successfully").status(201)
 }
+
+export async function getClasses(req: Request, res: Response){
+    const classesData = await classService.getClasses()
+
+    res.send(classesData).status(201)
+}
