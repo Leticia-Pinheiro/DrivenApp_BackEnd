@@ -57,7 +57,7 @@ model tutors{
 
 model classes {
   id       Int    @id @default(autoincrement())
-  name     String
+  name     String @unique
   group_class    group_class[]
   teachers teachers[]
 }
@@ -79,7 +79,7 @@ model group_class{
 
 model disciplines {
   id       Int    @id @default(autoincrement())
-  name     String
+  name     String @unique
   teachers teachers[]
 }
 
