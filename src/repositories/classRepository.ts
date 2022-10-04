@@ -18,3 +18,10 @@ export async function searchClassByName(
     const classData = await prisma.classes.findFirst({where: {name}})
     return classData
 }
+
+export async function searchClassById(
+    id: number
+){
+    const classData = await prisma.classes.findFirst({where: {id}})
+    return classData
+}

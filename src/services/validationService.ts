@@ -1,5 +1,6 @@
 import * as authRepository from "../repositories/authRepository"
 import * as classRepository from "../repositories/classRepository"
+import * as disciplineRepository from "../repositories/disciplineRepository"
 import { IBodySignIn } from "../utils/interfaces"
 import bcrypt from "bcrypt"
 
@@ -70,5 +71,15 @@ export async function validateClassName(
 
     if(classData){
         throw { code: "Unauthorized", message: "Class already registered"}
+    }
+}
+
+export async function validateDisciplineName(
+    name: string
+){
+    const disciplineData = await disciplineRepository.searchDisciplineByName(name)
+
+    if(disciplineData){
+        throw { code: "Unauthorized", message: "Discipline already registered"}
     }
 }
