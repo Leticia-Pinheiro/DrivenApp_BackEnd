@@ -1,6 +1,8 @@
-import { users, userTypes } from "@prisma/client"
+import { users, userTypes, groups } from "@prisma/client"
 
 export type TypeUser = Omit<users, 'id' |  'createdAt'>
+
+export type TypeGroup = Omit <groups, 'id'>
 
 export interface IBodySignUp
     {

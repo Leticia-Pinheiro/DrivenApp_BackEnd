@@ -1,7 +1,8 @@
 import * as authRepository from "../repositories/authRepository"
 import * as classRepository from "../repositories/classRepository"
 import * as disciplineRepository from "../repositories/disciplineRepository"
-import { IBodySignIn } from "../utils/interfaces"
+import * as groupRepository from "../repositories/groupRepository"
+import { IBodySignIn, TypeGroup } from "../utils/interfaces"
 import bcrypt from "bcrypt"
 
 export async function validateToSignUp(
@@ -35,6 +36,17 @@ export async function validateToSignIn(
     return user
 }
 
+export async function validateToCreateGroup(
+    groupData: TypeGroup
+){
+    const {
+        name,
+        classId
+    } = groupData
+
+    await validateGroupName(name)
+    await validateClassId(classId)
+}
 //------------------------------------------------------------------------------------------
 
 
@@ -74,6 +86,16 @@ export async function validateClassName(
     }
 }
 
+export async function validateClassId(
+    id: number
+){
+    const classData = await classRepository.searchClassById(id)
+
+    if (!classData){
+        throw { code: "Not Found", message: "Invalid class id"}
+    }
+}
+
 export async function validateDisciplineName(
     name: string
 ){
@@ -83,3 +105,14 @@ export async function validateDisciplineName(
         throw { code: "Unauthorized", message: "Discipline already registered"}
     }
 }
+
+export async function validateGroupName(
+    name: string
+){
+    const groupData = await groupRepository.searchGroupByName(name)
+
+    if(groupData){
+        throw { code: "Unauthorized", message: "Group already registered"}
+    }
+}
+

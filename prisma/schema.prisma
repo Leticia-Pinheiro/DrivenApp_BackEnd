@@ -51,31 +51,25 @@ model tutors{
   userId   Int 
   companies    companies @relation(fields: [companyId], references: [id])
   companyId   Int 
-  group_class    group_class @relation(fields: [group_classId], references: [id])
-  group_classId   Int 
+  groups    groups @relation(fields: [groupId], references: [id])
+  groupId   Int 
 }
 
 model classes {
   id       Int    @id @default(autoincrement())
   name     String @unique
-  group_class    group_class[]
+  groups    groups[]
   teachers teachers[]
 }
 
 model groups{
   id Int @id @default(autoincrement())
   name String
-  group_class    group_class[]
-}
-
-model group_class{
-  id       Int    @id @default(autoincrement())
   classes    classes @relation(fields: [classId], references: [id])
   classId   Int
-  groups    groups @relation(fields: [groupId], references: [id])
-  groupId   Int
-  tutors  tutors[]
+  tutors    tutors[]
 }
+
 
 model disciplines {
   id       Int    @id @default(autoincrement())
