@@ -36,12 +36,14 @@ teacherRouter.get(
 teacherRouter.put(
     "/teacher/class",
     verifyToken,
+    ValidateSchema(updateClassSchema),
     teacherController.updateTeacherClass
 )
 
 teacherRouter.put(
     "/teacher/discipline",
     verifyToken,
+    ValidateSchema(updateDisciplineSchema),
     teacherController.updateTeacherDiscipline
 )
 

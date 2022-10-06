@@ -22,3 +22,10 @@ export async function searchGroupByName(
     const groupData = await prisma.groups.findFirst({where: {name}})
     return groupData
 }
+
+export async function searchGroupById(
+    id: number
+){
+    const groupData = await prisma.groups.findFirst({where: {id}})
+    return groupData
+}

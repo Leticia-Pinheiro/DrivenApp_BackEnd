@@ -7,3 +7,11 @@ export async function validateGroupName(
 
     return groupData    
 }
+
+export async function validateGroupId(
+    id: number
+){
+    const groupData = await groupRepository.searchGroupById(id)
+
+    return groupData    
+}
