@@ -3,7 +3,7 @@ import * as tutorController from "../controllers/tutorController"
 import verifyToken from "../middlewares/verifyToken"
 import ValidateSchema from "../middlewares/validateSchemaMiddleware"
 import tutorSchema from "../schemas/tutorSchema"
-import updateGroupSchema from "../schemas/updateGroupSchema"
+import updateGroupTutorSchema from "../schemas/updateGroupTutorSchema"
 
 const tutorRouter = Router()
 
@@ -35,7 +35,7 @@ tutorRouter.get(
 tutorRouter.put(
     "/tutor/group",
     verifyToken,
-    ValidateSchema(updateGroupSchema),
+    ValidateSchema(updateGroupTutorSchema),
     tutorController.updateTutorGroup
 )
 

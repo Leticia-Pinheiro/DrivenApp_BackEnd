@@ -5,6 +5,7 @@ import disciplineRouter from "./disciplineRouter"
 import groupRouter from "./groupRouter"
 import teacherRouter from "./teacherRouter"
 import tutorRouter from "./tutorRouter"
+import studentRouter from "./studentRouter"
 
 
 const router = Router()
@@ -14,5 +15,6 @@ router.use(disciplineRouter)
 router.use(groupRouter)
 router.use(teacherRouter)
 router.use(tutorRouter)
+router.use(studentRouter)
 
 export default router
