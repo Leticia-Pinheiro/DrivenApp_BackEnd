@@ -54,3 +54,9 @@ export async function deleteTeacher(
     await prisma.teachers.delete({where: {id: teacherId}})
 }
 
+export async function searchTeacherById(
+    id: number
+){
+    const teacherData = await prisma.teachers.findUnique({where: {id}})
+    return teacherData
+}
