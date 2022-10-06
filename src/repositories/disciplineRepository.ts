@@ -18,3 +18,10 @@ export async function searchDisciplineByName(
     const disciplineData = await prisma.disciplines.findFirst({where: {name}})
     return disciplineData
 }
+
+export async function searchDisciplineById(
+    id: number
+){
+    const disciplineData = await prisma.disciplines.findFirst({where: {id}})
+    return disciplineData
+}
