@@ -53,6 +53,7 @@ model students {
   userId   Int 
   groups    groups @relation(fields: [groupId], references: [id])
   groupId   Int
+  notes notes[]
 }
 
 model classes {
@@ -60,6 +61,7 @@ model classes {
   name     String @unique
   groups    groups[]
   teachers teachers[]
+  modules modules[]
 }
 
 model groups{
@@ -76,13 +78,58 @@ model disciplines {
   id       Int    @id @default(autoincrement())
   name     String @unique
   teachers teachers[]
+  modules modules[]
 }
 
+model modules {
+  id Int @id @default(autoincrement())
+  name String
+  disciplines    disciplines @relation(fields: [disciplineId], references: [id])
+  disciplineId   Int 
+  classes    classes @relation(fields: [classId], references: [id])
+  classId   Int
+  contents contents[]
+  projects projects[]
+}
+
+model contents {
+  id Int @id @default(autoincrement())
+  title String
+  compiled String
+  modules    modules @relation(fields: [moduleId], references: [id])
+  moduleId   Int
+}
+
+model projects {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  modules    modules @relation(fields: [moduleId], references: [id])
+  moduleId   Int
+  notes notes[]
+}
+
+model notes {
+  id Int @id @default(autoincrement())
+  note notesOptions
+  feedback String
+  students   students @relation(fields: [studentId], references: [id])
+  studentId Int
+  projects   projects @relation(fields: [projectId], references: [id])
+  projectId Int
+
+}
 
 enum userTypes {
   company 
   teacher
   tutor
   student
+}
+
+enum notesOptions {
+  abaixo
+  dentro
+  acima
 }
 
