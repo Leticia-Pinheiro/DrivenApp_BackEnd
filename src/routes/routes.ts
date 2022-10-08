@@ -8,6 +8,7 @@ import tutorRouter from "./tutorRouter"
 import studentRouter from "./studentRouter"
 import moduleRouter from "./moduleRouter"
 import contentsRouter from "./contentsRouter"
+import projectRouter from "./projectRouter"
 
 const router = Router()
 router.use(authRouter)
@@ -19,5 +20,6 @@ router.use(tutorRouter)
 router.use(studentRouter)
 router.use(moduleRouter)
 router.use(contentsRouter)
+router.use(projectRouter)
 
 export default router

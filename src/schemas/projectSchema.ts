@@ -6,4 +6,4 @@ const projectSchema = joi.object({
     moduleId: joi.number().integer().required()
 });
 
-export default projectSchema;
+export default projectSchema
