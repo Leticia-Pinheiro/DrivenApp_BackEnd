@@ -7,4 +7,4 @@ const noteSchema = joi.object({
     projectId: joi.number().integer().required(),
 });
 
-export default noteSchema;
+export default noteSchema

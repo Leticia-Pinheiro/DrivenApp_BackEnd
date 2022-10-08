@@ -9,6 +9,7 @@ import studentRouter from "./studentRouter"
 import moduleRouter from "./moduleRouter"
 import contentsRouter from "./contentsRouter"
 import projectRouter from "./projectRouter"
+import noteRouter from "./noteRouter"
 
 const router = Router()
 router.use(authRouter)
@@ -21,5 +22,6 @@ router.use(studentRouter)
 router.use(moduleRouter)
 router.use(contentsRouter)
 router.use(projectRouter)
+router.use(noteRouter)
 
 export default router
